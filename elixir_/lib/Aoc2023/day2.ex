@@ -10,12 +10,7 @@ defmodule Aoc2023.Day2 do
   @blue_limit 14
 
   def part1() do
-    games =
-      Input.parse()
-      |> Enum.map(&parse_game/1)
-      |> Map.new()
-
-    games
+    parse_input()
     |> Enum.filter(fn {_id, pulls} ->
       Enum.all?(pulls, fn
         %{red: red, green: green, blue: blue}
@@ -28,6 +23,27 @@ defmodule Aoc2023.Day2 do
     end)
     |> Enum.map(fn {id, _} -> id end)
     |> Enum.sum()
+  end
+
+  def part2() do
+    games = parse_input()
+
+    min_values =
+      for {id, pull} <- games do
+        min_red = pull |> Enum.map(&Map.fetch!(&1, :red)) |> Enum.max()
+        min_green = pull |> Enum.map(&Map.fetch!(&1, :green)) |> Enum.max()
+        min_blue = pull |> Enum.map(&Map.fetch!(&1, :blue)) |> Enum.max()
+
+        {id, min_red * min_green * min_blue}
+      end
+
+    min_values |> Enum.map(fn {_id, value} -> value end) |> Enum.sum()
+  end
+
+  defp parse_input() do
+    Input.parse()
+    |> Enum.map(&parse_game/1)
+    |> Map.new()
   end
 
   defp parse_game("Game " <> game) do
