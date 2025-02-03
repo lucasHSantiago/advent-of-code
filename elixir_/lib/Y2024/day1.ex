@@ -1,4 +1,4 @@
-defmodule Aoc2024.Day1 do
+defmodule Y2024.Day1 do
   def part1 do
     inputs = parse()
     {first, second} = Enum.unzip(inputs)

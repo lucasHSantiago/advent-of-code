@@ -1,4 +1,4 @@
-defmodule Aoc2024.Day2 do
+defmodule Y2024.Day2 do
   def part1 do
     parse()
     |> Enum.count(fn levels ->

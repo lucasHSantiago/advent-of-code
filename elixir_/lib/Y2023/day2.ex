@@ -1,4 +1,4 @@
-defmodule Aoc2023.Day2 do
+defmodule Y2023.Day2 do
   alias Common.Input
 
   defmodule Pull do

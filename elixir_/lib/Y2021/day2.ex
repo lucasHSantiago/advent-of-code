@@ -1,4 +1,4 @@
-defmodule Aoc2021.Day2 do
+defmodule Y2021.Day2 do
   alias Common.Input, as: Input
 
   def part1 do
